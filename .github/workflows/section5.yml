@@ -40,7 +40,7 @@ jobs:
       - name: Publish JS filename
         id: mypublish # id used in outputs
         # linux command - myoutput used in outputs
-        run: find dist/assets/*.js -type -f -execdir echo 'myoutput={}' >> $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'myoutput={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
