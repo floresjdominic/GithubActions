@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
+// sample comment for skip ci
 export default defineConfig({
   plugins: [react(), eslint()],
   test: {
