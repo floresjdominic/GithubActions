@@ -20,7 +20,7 @@ env:
  
 jobs:
   first-workflow-job:
-    runs-on: ebf-pod-ubuntu-2004@${{ github.run_id }}-first_workflow_job    #format: ebf-[vm/pod]-[os name and version]@${{ github.run_id }}-[jobname]
+    runs-on: ubuntu-latest # ebf-pod-ubuntu-2004@${ github.run_id }}-first_workflow_job    #format: ebf-[vm/pod]-[os name and version]@${ github.run_id }}-[jobname]
     steps:
       - name: My first step
         run: echo "Hello ${{ env.name }}, Welcome to my first workflow in GitHub Actions"    
