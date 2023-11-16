@@ -1,0 +1,26 @@
+name: my_first_workflow
+ 
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - ".github/workflows/my_first_workflow.yml"
+ 
+  workflow_dispatch:
+    inputs:
+      who-to-greet:
+        description: Who to greet?
+        default: 'Master'
+        type: string
+        required: false
+ 
+env:
+  name: ${{ github.event.inputs.who-to-greet }}
+ 
+jobs:
+  first-workflow-job:
+    runs-on: ebf-pod-ubuntu-2004@${{ github.run_id }}-first_workflow_job    #format: ebf-[vm/pod]-[os name and version]@${{ github.run_id }}-[jobname]
+    steps:
+      - name: My first step
+        run: echo "Hello ${{ env.name }}, Welcome to my first workflow in GitHub Actions"    
