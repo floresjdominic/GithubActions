@@ -4,14 +4,16 @@ on:
     branches:
       - main
       - dev
+      - 06EnvVar
 env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
-    env:
+    environment: testing # repository environment
+    env: 
       MONGODB_CLUSTER_ADDRESS: 
-      MONGODB_USERNAME: TEST # or ${{ secrets.MONGODB_USERNAME}}
-      MONGODB_PASSWORD: TEST # or ${{ secrets.MONGODB_PASSWORD}}
+      MONGODB_USERNAME: TEST # or ${{ secrets.MONGODB_USERNAME}} # repository secrets
+      MONGODB_PASSWORD: TEST # or ${{ secrets.MONGODB_PASSWORD}} # repository secrets
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
