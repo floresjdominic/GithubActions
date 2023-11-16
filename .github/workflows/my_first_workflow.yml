@@ -1,26 +1,26 @@
-name: my_first_workflow
- 
+name: Mixed inputs
+
 on:
-  push:
-    branches:
-      - "master"
-    paths:
-      - ".github/workflows/my_first_workflow.yml"
- 
   workflow_dispatch:
     inputs:
-      who-to-greet:
-        description: Who to greet?
-        default: 'Master'
-        type: string
-        required: false
- 
-env:
-  name: ${{ github.event.inputs.who-to-greet }}
- 
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+      message:
+        required: true
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
+
 jobs:
-  first-workflow-job:
-    runs-on: ubuntu-latest # ebf-pod-ubuntu-2004@${ github.run_id }}-first_workflow_job    #format: ebf-[vm/pod]-[os name and version]@${ github.run_id }}-[jobname]
+  greet:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: My first step
-        run: echo "Hello ${{ env.name }}, Welcome to my first workflow in GitHub Actions"    
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
