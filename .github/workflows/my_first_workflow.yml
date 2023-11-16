@@ -13,7 +13,7 @@ on:
         description: Who to greet?
         default: 'Master'
         type: string
-        required: false
+        required: true
  
 env:
   name: ${{ github.event.inputs.who-to-greet }}
